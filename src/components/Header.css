@@ -1,0 +1,17 @@
+.header{
+    margin-bottom: 100px;
+}
+
+nav, .header-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-top{
+    justify-content: space-between;
+}
+
+.navitem{
+    margin: 0 20px;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Header from "../components/Header";
 import { Srch } from "../components/Search";
 import "./HomePage.css";
 
@@ -72,6 +73,7 @@ function Home({ darkMode }) {
       id="id1"
       className="container App border0 font-family-sans-serif bgblue"
     >
+    <Header />
       <h2>{t}</h2>
       <form onSubmit={(e) => handleSubmit(e)} className="myForm">
         <label> Name </label>
