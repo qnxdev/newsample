@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Page from "../components/Page";
 import { Srch } from "../components/Search";
 import "./HomePage.css";
 
@@ -65,51 +66,51 @@ function Home({ darkMode }) {
     } else {
       setTitle("Crud operations");
     }
-  });
+  },[edit]);
 
   // let employeeData = this.state.employeeData;
   return (
-    <div
-      id="id1"
-      className="container App border0 font-family-sans-serif bgblue"
-    >
-    <Header />
-      <h2>{t}</h2>
-      <form onSubmit={(e) => handleSubmit(e)} className="myForm">
-        <label> Name </label>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          onChange={(e) => handleNameChange(e)}
-          className="formField"
-          id="name"
-        />
-        <label> Age </label>
-        <input
-          type="text"
-          placeholder="Enter your Age"
-          onChange={(e) => handleAgeChange(e)}
-          className="formField"
-          id="age"
-        />
-        <button type="submit"> Save-Submit </button>
-      </form>
-      <div className="container font-family-sans-serif bgblue">
-        {employeeData.map((data) => (
-          <div key={employeeData.indexOf(data)}>
-            <label>{data.name} </label>
-            <label>{data.age} </label>
-            <button onClick={() => handleUpdate(employeeData.indexOf(data))}>
-              {edit ? "" : "Edit"}
-            </button>
-            <button onClick={() => handleDelete(employeeData.indexOf(data))}>
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
-      <Srch SrchData={employeeData} />
-      {/* <table>
+    <Page>
+      <div
+        id="id1"
+        className="container App border0 font-family-sans-serif bgblue"
+      >
+        <h2>{t}</h2>
+        <form onSubmit={(e) => handleSubmit(e)} className="myForm">
+          <label> Name </label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            onChange={(e) => handleNameChange(e)}
+            className="formField"
+            id="name"
+          />
+          <label> Age </label>
+          <input
+            type="text"
+            placeholder="Enter your Age"
+            onChange={(e) => handleAgeChange(e)}
+            className="formField"
+            id="age"
+          />
+          <button type="submit"> Save-Submit </button>
+        </form>
+        <div className="container font-family-sans-serif bgblue">
+          {employeeData.map((data) => (
+            <div key={employeeData.indexOf(data)}>
+              <label>{data.name} </label>
+              <label>{data.age} </label>
+              <button onClick={() => handleUpdate(employeeData.indexOf(data))}>
+                {edit ? "" : "Edit"}
+              </button>
+              <button onClick={() => handleDelete(employeeData.indexOf(data))}>
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+        <Srch SrchData={employeeData} />
+        {/* <table>
         <tr>
           <th>Name</th>
           <th>Age</th>
@@ -126,7 +127,7 @@ function Home({ darkMode }) {
           );
         })}
       </table> */}
-      <style>{`.container{
+        <style>{`.container{
         background: ${darkMode ? "#000" : "#fff"};
         color: ${darkMode ? "#fff" : "#000"}
       }
@@ -136,7 +137,8 @@ function Home({ darkMode }) {
       }
       
       `}</style>
-    </div>
+      </div>
+    </Page>
   );
 }
 

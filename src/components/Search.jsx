@@ -25,7 +25,7 @@ export function Srch({ SrchData }) {
       find.age.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setResObj(results);
-  }, [searchTerm]);
+  }, [searchTerm,SrchData]);
   if (disableRes) {
     return (
       <div className="Srch">

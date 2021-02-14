@@ -1,0 +1,16 @@
+.side-nav-container{
+    display: flex;
+    padding-bottom: 10%;
+}
+.sidenav h4{
+    border-radius: 5px;
+    background: cornflowerblue;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.view{
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+}
