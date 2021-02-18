@@ -11,7 +11,6 @@ export default function FaciltiesPage({ user }) {
         {user.name + " " + user.email}
       </Page>
     );
-
   }
   else{
     history.replace("/login?redirect=facilities");

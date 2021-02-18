@@ -25,6 +25,7 @@ function Home({ darkMode }) {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
     if (edit) {
       setEmployeeData([
         ...employeeData.slice(0, uid),

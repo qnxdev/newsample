@@ -22,11 +22,11 @@ import bcrypt from "bcryptjs";
 
 function App() {
   const [isDark, setDark] = useState(true);
-  const [isLoggedIn, setLogin] = useState("true");
+  const [isLoggedIn, setLogin] = useState("");
   const [user, setUser] = useState({});
   const [err, setErr] = useState("");
   const [users, setUsers] = useState([]);
-
+  
   const createUser = async (user) => {
     let hashedPassword = await bcrypt.hash(user.password, 10);
 
@@ -55,7 +55,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
         <Switch>
           <Route exact path="/">
@@ -114,8 +114,14 @@ function App() {
 }
 
 App.propTypes = {
-  isDark: PropTypes.bool,
+  isDark: PropTypes.object,
   isLoggedIn: PropTypes.object,
+  createUser: PropTypes.func,
+  HomePage: PropTypes.func,
+ /*  customProp2 : function(props,propName,componentName) {
+    if(!ite)
+    
+  } */
 };
 
 export default App;
