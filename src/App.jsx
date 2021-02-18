@@ -1,6 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import { useState } from "react";
@@ -12,16 +16,46 @@ import FaciltiesPage from "./pages/FaciltiesPage";
 import AdmissionPage from "./pages/AdmnPage";
 import DeptPage from "./pages/DeptPage";
 import LoginPage from "./pages/LoginPage";
+import PropTypes from "prop-types";
+
+import bcrypt from "bcryptjs";
 
 function App() {
-  const [isDark, setDark] = useState(false);
-  const [isLoggedIn, setLogin] = useState(false);
-  let a = 1;
-  const some2 = (a) => {
-    console.log("Nothing", a);
+  const [isDark, setDark] = useState(true);
+  const [isLoggedIn, setLogin] = useState("");
+  const [user, setUser] = useState({});
+  const [err, setErr] = useState("");
+  const [users, setUsers] = useState([]);
+  
+  const createUser = async (user) => {
+    let hashedPassword = await bcrypt.hash(user.password, 10);
+
+    setUsers([
+      ...users,
+      {
+        name: user.name,
+        email: user.email,
+        password: hashedPassword,
+      },
+    ]);
+    console.log(users);
   };
+  const loginChecker = async (currentUser) => {
+    let check = users.find((i) => i.email == currentUser.email);
+    if (check) {
+      if (await bcrypt.compare(currentUser.password, check.password)) {
+        setUser(check);
+        setErr("Success Logged in");
+      } else {
+        setErr("Wrong password");
+      }
+    } else {
+      setErr("User doesn't exist");
+    }
+  };
+
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
         <Switch>
           <Route exact path="/">
@@ -34,13 +68,25 @@ function App() {
             <DeptPage darkMode={isDark} />
           </Route>
           <Route exact path="/admin">
-            <AdmissionPage user={isLoggedIn} />
+            {isLoggedIn ? (
+              <AdmissionPage
+                loginControl={() => setLogin(false)}
+                user={isLoggedIn}
+              />
+            ) : (
+              <LoginPage loginControl={() => setLogin(true)} />
+            )}
           </Route>
           <Route exact path="/facilities">
-            <FaciltiesPage  />
+            <FaciltiesPage user={user} />
           </Route>
           <Route exact path="/login">
-            <LoginPage  />
+            <LoginPage
+              signUp={(user) => createUser(user)}
+              loginControl={(user) => loginChecker(user)}
+              err={err}
+              loggedUser={user}
+            />
           </Route>
 
           <Route
@@ -57,8 +103,25 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <style>{`
+       body{
+         background: ${isDark ? "#222" : "#fff"};
+         color: ${isDark ? "#fff" : "#000"}
+       }
+      `}</style>
     </div>
   );
 }
+
+App.propTypes = {
+  isDark: PropTypes.object,
+  isLoggedIn: PropTypes.object,
+  createUser: PropTypes.func,
+  HomePage: PropTypes.func,
+ /*  customProp2 : function(props,propName,componentName) {
+    if(!ite)
+    
+  } */
+};
 
 export default App;
