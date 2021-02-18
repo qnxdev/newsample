@@ -12,6 +12,7 @@ import FaciltiesPage from "./pages/FaciltiesPage";
 import AdmissionPage from "./pages/AdmnPage";
 import DeptPage from "./pages/DeptPage";
 import LoginPage from "./pages/LoginPage";
+import GamePage from "./pages/GamePage";
 
 function App() {
   const [isDark, setDark] = useState(false);
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LoginPage  />
+          </Route>
+          <Route exact path="/game">
+            <GamePage  />
           </Route>
 
           <Route
