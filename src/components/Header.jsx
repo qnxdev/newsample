@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { Button } from "./tippyComponents/input";
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
       <div className="header-top">
         <h2>ORG NAME</h2>
         <div className="login-container">
-          <Link to="/login"><button>Login</button></Link>
+          <Link to="/login"><Button content="Login here">Login</Button></Link>
           <button>Sign Up</button>
         </div>
       </div>

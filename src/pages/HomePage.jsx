@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Loader from "../components/Loader";
 import { Srch } from "../components/Search";
 import "./HomePage.css";
+import logo from "../loader2.svg";
+import Page from "../components/Page";
+
+//Redux is a predictable state container for JavaScript apps.
 
 function Home({ darkMode }) {
   const [employeeData, setEmployeeData] = useState([]);
@@ -10,6 +15,7 @@ function Home({ darkMode }) {
   const [uid, setIndex] = useState(0);
   const [t, setTitle] = useState("");
   const [login, setT] = useState(false);
+  const [loader, setL] = useState(20);
 
   function handleNameChange(e) {
     let emp = {
@@ -59,7 +65,6 @@ function Home({ darkMode }) {
   };
 
   useEffect(() => {
-    console.log("vakj");
     if (edit) {
       setTitle("You are updating an user");
     } else {
@@ -69,74 +74,85 @@ function Home({ darkMode }) {
 
   // let employeeData = this.state.employeeData;
   return (
-    <div
-      id="id1"
-      className="container App border0 font-family-sans-serif bgblue"
-    >
-    <Header />
-      <h2>{t}</h2>
-      <form onSubmit={(e) => handleSubmit(e)} className="myForm">
-        <label> Name </label>
+    <Page>
+      <div
+        id="id1"
+        className="container App border0 font-family-sans-serif bgblue"
+      >
+        <Header />
         <input
-          type="text"
-          placeholder="Enter your name"
-          onChange={(e) => handleNameChange(e)}
-          className="formField"
-          id="name"
+          type="range"
+          value={loader}
+          onChange={(e) => setL(e.target.value)}
+          id=""
         />
-        <label> Age </label>
-        <input
-          type="text"
-          placeholder="Enter your Age"
-          onChange={(e) => handleAgeChange(e)}
-          className="formField"
-          id="age"
-        />
-        <button type="submit"> Save-Submit </button>
-      </form>
-      <div className="container font-family-sans-serif bgblue">
-        {employeeData.map((data) => (
-          <div key={employeeData.indexOf(data)}>
-            <label>{data.name} </label>
-            <label>{data.age} </label>
-            <button onClick={() => handleUpdate(employeeData.indexOf(data))}>
-              {edit ? "" : "Edit"}
-            </button>
-            <button onClick={() => handleDelete(employeeData.indexOf(data))}>
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
-      <Srch SrchData={employeeData} />
-      {/* <table>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-        </tr>
-        {employeeData.map((data) => {
-          return (
-            <tr key={employeeData.indexOf(data)}>
-              
+        <button>
+          <Loader size={loader}>sgsdg</Loader>
+        </button>
+        <h2>{t}</h2>
+        <form onSubmit={(e) => handleSubmit(e)} className="myForm">
+          <label> Name </label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            onChange={(e) => handleNameChange(e)}
+            className="formField"
+            id="name"
+          />
+          <label> Age </label>
+          <input
+            type="text"
+            placeholder="Enter your Age"
+            onChange={(e) => handleAgeChange(e)}
+            className="formField"
+            id="age"
+          />
+          <button type="submit"> Save-Submit </button>
+        </form>
+        <div className="container font-family-sans-serif bgblue">
+          {employeeData.map((data) => (
+            <div key={employeeData.indexOf(data)}>
               <label>{data.name} </label>
               <label>{data.age} </label>
-              <button onClick={() => handleUpdate(data.id)}>Edit</button>
-              <button onClick={() => handleDelete(data.id)}>Delete</button>
-            </tr>
-          );
-        })}
-      </table> */}
-      <style>{`.container{
-        background: ${darkMode ? "#000" : "#fff"};
-        color: ${darkMode ? "#fff" : "#000"}
-      }
-      .App{
-        height: 100vh;
-        width: 100vw;
-      }
-      
-      `}</style>
-    </div>
+              <button onClick={() => handleUpdate(employeeData.indexOf(data))}>
+                {edit ? "" : "Edit"}
+              </button>
+              <button onClick={() => handleDelete(employeeData.indexOf(data))}>
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+        <Srch SrchData={employeeData} />
+        {/* <table>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+      {employeeData.map((data) => {
+        return (
+          <tr key={employeeData.indexOf(data)}>
+            
+            <label>{data.name} </label>
+            <label>{data.age} </label>
+            <button onClick={() => handleUpdate(data.id)}>Edit</button>
+            <button onClick={() => handleDelete(data.id)}>Delete</button>
+          </tr>
+        );
+      })}
+    </table> */}
+        <style>{`.container{
+      background: ${darkMode ? "#000" : "#fff"};
+      color: ${darkMode ? "#fff" : "#000"}
+    }
+    .App{
+      height: 100vh;
+      width: 100vw;
+    }
+    
+    `}</style>
+      </div>
+    </Page>
   );
 }
 

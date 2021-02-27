@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Router, useHistory } from "react-router-dom";
 import Page from "../components/Page";
 
-export default function AdmissionPage() {
+
+
+export default function GamePage() {
   const [view, setView] = useState("initial");
   const [dime, setDime] = useState(2);
   const [time, setTime] = useState(60);
@@ -56,6 +58,8 @@ export default function AdmissionPage() {
       {view == "error" && (
         <div className="error">
           <h1>Game Over !</h1>
+          <br/>
+          <h1>Your score: {dime}</h1>
         </div>
       )}
       <br />
@@ -102,6 +106,7 @@ const GameTable = ({ dimension, pass, fail }) => {
         </td>
       );
     }
+    
     rows.push(<tr className="row">{col}</tr>);
   }
   return (
