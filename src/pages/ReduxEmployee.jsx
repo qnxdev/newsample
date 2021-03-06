@@ -3,7 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import employeeAction from "../actions/employeeAction";
 import Page from "../components/Page";
-import {Button, Input} from "../components/tippyComponents/input";
+import { Button, Input } from "../components/tippyComponents/input";
 
 function ReduxEmployee({ employeeData, setEmployee }) {
   const [newEmp, setEmp] = useState({ name: "", email: "" });
@@ -33,21 +33,48 @@ function ReduxEmployee({ employeeData, setEmployee }) {
     ]);
   }
 
+
+
+  function Mapper(emp) {
+    return (
+      <tr>
+        <td>{employeeData.indexOf(emp) + 1}</td>
+        <td>{emp.name}</td>
+        <td>{emp.email}</td>
+        <td>
+          <Tippy content="Update this employee">
+            <button
+              onClick={function () {
+                setUpdate(employeeData.indexOf(emp));
+              }}
+            >
+              Update
+            </button>
+          </Tippy>
+        </td>
+        <td>
+          <button
+            onClick={function () {
+              handleDelete(employeeData.indexOf(emp));
+            }}
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+    );
+  }
   return (
     <Page>
       <div className="add">
-
-
         <Input
           content="Name"
           type="text"
           value={newEmp.name}
           onChange={(e) => setEmp({ ...newEmp, name: e.target.value })}
           id="name"
-          placeholder="name"/>
-
-
-
+          placeholder="name"
+        />
 
         <input
           type="email"
@@ -56,7 +83,7 @@ function ReduxEmployee({ employeeData, setEmployee }) {
           id="email"
         />
         <Button
-        content="Add employee"
+          content="Add employee"
           onClick={
             edit
               ? function () {
@@ -81,35 +108,9 @@ function ReduxEmployee({ employeeData, setEmployee }) {
             <td>Name</td>
             <td>Email</td>
           </th>
-          {employeeData.map(function (emp) {
-            return (
-              <tr>
-                <td>{employeeData.indexOf(emp) + 1}</td>
-                <td>{emp.name}</td>
-                <td>{emp.email}</td>
-                <td>
-                  <Tippy content="Update this employee">
-                    <button
-                      onClick={function () {
-                        setUpdate(employeeData.indexOf(emp));
-                      }}
-                    >
-                      Update
-                    </button>
-                  </Tippy>
-                </td>
-                <td>
-                  <button
-                    onClick={function () {
-                      handleDelete(employeeData.indexOf(emp));
-                    }}
-                  >
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {employeeData.map(Mapper)}
+          
+          {}
         </table>
 
         {/* {employeeData.map((emp) => (

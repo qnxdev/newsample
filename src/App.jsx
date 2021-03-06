@@ -21,6 +21,9 @@ import employeeAction from "./actions/employeeAction";
 import 'tippy.js/dist/tippy.css'; // optional
 import Tippy from '@tippyjs/react';
 import ReduxEmployee from "./pages/ReduxEmployee";
+import Sampler from "./pages/SamplingRedux";
+import ApiPage from "./pages/ApiPage";
+import ReduxCounter from "./pages/ReduxCounter";
 
 
 
@@ -40,13 +43,13 @@ function App({ employeeData,isDark, setBright, setDark}) {
 
   return (
     <div className="App">
-      <div className="employeeData">
+     {/*  <div className="employeeData">
         {
           employeeData.map(i=>
             <h4>{i.name} <br/> {i.email}</h4>
             )
         }
-      </div>
+      </div> */}
      <StringContent/>
      <JSXContent/>
 
@@ -80,6 +83,9 @@ function App({ employeeData,isDark, setBright, setDark}) {
           <Route exact path="/emp">
             <ReduxEmployee />
           </Route>
+          <Route exact path="/use-api">
+            <ApiPage />
+          </Route>
           <Route
             exact
             path="/users/:id/:project"
@@ -89,6 +95,12 @@ function App({ employeeData,isDark, setBright, setDark}) {
               </Contact>
             )}
           />
+          <Route exact path="/sample">
+            <Sampler />
+          </Route>
+          <Route exact path="/redux-counter">
+            <ReduxCounter/>
+          </Route>
           <Route>
             <Error />
           </Route>
