@@ -1,5 +1,9 @@
 export default (state, action) => {
   switch (action.type) {
+    case "user":
+      return {
+        currentUser: action.payload,
+      };
     case "darkmode":
       return {
         isDark: action.payload,

@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import {shallow} from 'enzyme'
 import App from './App';
+import { Provider } from 'react-redux';
+import configureStore from './store';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it('renders learn react link', () => {
+  shallow(<Provider store={configureStore()}>
+  <App/>
+</Provider>);  
 });

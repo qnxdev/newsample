@@ -1,16 +1,22 @@
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { Button } from "./tippyComponents/input";
 
-export default function Header() {
+function Header({ currentUser }) {
   return (
     <div className="header">
       <div className="header-top">
         <h2>ORG NAME</h2>
+        {currentUser.email ? 
+        <h4>{currentUser.name}</h4>
+        :
         <div className="login-container">
-          <Link to="/login"><Button content="Login here">Login</Button></Link>
+          <Link to="/use-api">
+            <Button content="Login here">Login</Button>
+          </Link>
           <button>Sign Up</button>
-        </div>
+        </div>}
       </div>
       <nav>
         <Link to="/admin">
@@ -29,3 +35,7 @@ export default function Header() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({ ...state });
+
+export default connect(mapStateToProps)(Header);
