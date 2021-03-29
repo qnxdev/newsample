@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+<<<<<<< HEAD
 import Loader from "../components/Loader";
+=======
+import Page from "../components/Page";
+>>>>>>> main
 import { Srch } from "../components/Search";
 import "./HomePage.css";
 import logo from "../loader2.svg";
@@ -30,6 +34,7 @@ function Home({ darkMode }) {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
     if (edit) {
       setEmployeeData([
         ...employeeData.slice(0, uid),
@@ -70,7 +75,7 @@ function Home({ darkMode }) {
     } else {
       setTitle("Crud operations");
     }
-  });
+  },[edit]);
 
   // let employeeData = this.state.employeeData;
   return (
@@ -79,6 +84,7 @@ function Home({ darkMode }) {
         id="id1"
         className="container App border0 font-family-sans-serif bgblue"
       >
+<<<<<<< HEAD
         <Header />
         <input
           type="range"
@@ -89,6 +95,8 @@ function Home({ darkMode }) {
         <button>
           <Loader size={loader}>sgsdg</Loader>
         </button>
+=======
+>>>>>>> main
         <h2>{t}</h2>
         <form onSubmit={(e) => handleSubmit(e)} className="myForm">
           <label> Name </label>
@@ -125,6 +133,7 @@ function Home({ darkMode }) {
         </div>
         <Srch SrchData={employeeData} />
         {/* <table>
+<<<<<<< HEAD
       <tr>
         <th>Name</th>
         <th>Age</th>
@@ -151,6 +160,34 @@ function Home({ darkMode }) {
     }
     
     `}</style>
+=======
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        {employeeData.map((data) => {
+          return (
+            <tr key={employeeData.indexOf(data)}>
+              
+              <label>{data.name} </label>
+              <label>{data.age} </label>
+              <button onClick={() => handleUpdate(data.id)}>Edit</button>
+              <button onClick={() => handleDelete(data.id)}>Delete</button>
+            </tr>
+          );
+        })}
+      </table> */}
+        <style>{`.container{
+        background: ${darkMode ? "#000" : "#fff"};
+        color: ${darkMode ? "#fff" : "#000"}
+      }
+      .App{
+        height: 100vh;
+        width: 100vw;
+      }
+      
+      `}</style>
+>>>>>>> main
       </div>
     </Page>
   );

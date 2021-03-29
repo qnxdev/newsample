@@ -1,17 +1,28 @@
-.header{
-    margin-bottom: 100px;
-}
+    .header{
+        margin-bottom: 100px;
+    }
 
-nav, .header-top{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    nav, .header-top{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.header-top{
-    justify-content: space-between;
-}
+    .header-top{
+        justify-content: space-between;
+    }
 
-.navitem{
-    margin: 0 20px;
-}
+    .navitem{
+        margin: 0 20px;
+    }
+
+    .nav-item-container:hover .dropdown{
+        display: flex;
+    }
+
+    .dropdown{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        text-align: center;
+    }

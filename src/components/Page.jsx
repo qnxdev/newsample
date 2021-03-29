@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 import Header from "./Header";
 
-export default function Page({ children }) {
+export default function Page({ user,loginControl,children }) {
   return (
+<<<<<<< HEAD
     <div className="page" >
       <Header />
       {children}
@@ -17,6 +19,12 @@ export default function Page({ children }) {
          color: #ccc;
        }
       `}</style>
+=======
+    <div className="header">
+      <Header loginControl={loginControl}  user={user}/>
+      {children}
+      <Footer />
+>>>>>>> main
     </div>
   );
 }
