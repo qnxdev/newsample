@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-=======
-import { Link, useHistory } from "react-router-dom";
-import { ORG_LOGO, ORG_NAME } from "../lib/constants";
->>>>>>> main
 import "./Header.css";
 import { Button } from "./tippyComponents/input";
 
-<<<<<<< HEAD
 function Header({ currentUser }) {
   return (
     <div className="header">
@@ -23,35 +17,6 @@ function Header({ currentUser }) {
           </Link>
           <button>Sign Up</button>
         </div>}
-=======
-export default function Header({ user, loginControl }) {
-  const history = useHistory();
-  return (
-    <div className="header">
-      <div className="header-top">
-        <h2>
-        <img src={ORG_LOGO} width="30px" alt=""/>
-        {ORG_NAME}</h2>
-        <div className="login-container">
-          {user ? (
-            <button
-              onClick={() => {
-                loginControl();
-                history.push("/");
-              }}
-            >
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link to="/login">
-                <button>Login</button>
-              </Link>
-              <button>Sign Up</button>
-            </>
-          )}
-        </div>
->>>>>>> main
       </div>
       <nav>
         <div className="nav-item-container">
