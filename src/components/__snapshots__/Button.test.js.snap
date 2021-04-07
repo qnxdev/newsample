@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders without any error 1`] = `
+exports[`Button should render without issues 1`] = `
 <button
   className="Button"
+  onClick={[Function]}
 />
 `;

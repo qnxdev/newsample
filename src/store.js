@@ -7,7 +7,7 @@ function configureStore(
     isDark: true, //false is from action => to reducer => to this state
     employeeData: [],
     counter: 0,
-    currentUser: {},
+    currentUser: {}
   }
 ) {
   return createStore(reducer, state);

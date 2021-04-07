@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import Page from "../components/Page";
+import { PageProps } from "../typescript/pages";
 
-export default function AboutPage({ darkMode }) {
+const AboutPage: FunctionComponent<PageProps> = ({ darkMode }: PageProps) => {
   const [count, setCount] = useState(0);
   return (
-    <Page>
+    <Page user={{}} loginControl={{}}>
       <div className="container">
         <button onClick={() => setCount(count + 1)}>Increment</button>
         <button
@@ -29,4 +30,5 @@ export default function AboutPage({ darkMode }) {
       </div>
     </Page>
   );
-}
+};
+export default AboutPage;

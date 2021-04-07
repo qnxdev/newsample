@@ -1,6 +1,14 @@
-function Button({ fn, children, title }) {
+function Button({ fn, children, title, isLoading }) {
   return (
-    <button onClick={fn} title={title} className="Button">
+    <button
+      onClick={() => {
+        if (!isLoading) {
+          return fn();
+        } 
+      }}
+      title={title}
+      className="Button"
+    >
       {children}
     </button>
   );
